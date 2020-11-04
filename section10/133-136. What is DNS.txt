@@ -1,0 +1,27 @@
+DNS => Domain Name System
+
+1.  Browser first checks if the computer knows the ip address
+2.  If the Browser doesn't know a DNS query begins
+3.  First stop is to a root server.  It tells us the the ip address for .com servers
+4.  Next goes to the TLD , Top Level Domain, servers.  It knows the IP address of the server
+5.  The authoritative name server gives the actual ip address.
+
+
+134. SETTING OUR DNS RECORDS
+TXT record is used for an email to signify a valid domain
+
+A RECORD :  Domain Name =  rest-api-course-trial.com , IPv4 = droplet ip address,  TTL = Time to Live automatic
+AAAA RECORD (not used): Domain Name =  rest-api-course-trial.com , IPv6 = droplet ip address,  TTL = Time to Live automatic
+CNAME : www.rest-api-course-trial.com  rest-api-course-trial.com
+MX :  email server
+
+
+
+135.  VERIFY EVERYTHING WORKS
+Check everything works using postman with the cloudflare.  We have given the ip address an alias
+
+136.  SET OUR SSL CERTIFICATE
+1. Goto crypto tab in cloudflare
+2. Click full-strict in SSL
+3. Create certificate in Origin using Chrome
+4. Copy the certificates.

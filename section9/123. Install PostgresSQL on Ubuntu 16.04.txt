@@ -1,0 +1,17 @@
+Install PostreSQL on Ubuntu 16.04
+While logged in as root user:
+
+apt-get update
+apt-get install postgresql postgresql-contrib
+After installation, change user to postgres user by running
+
+sudo -i -u postgres
+Connect to the database by running
+
+psql
+To exit postgres database console, run
+
+\q
+To exit postgres user
+
+exit

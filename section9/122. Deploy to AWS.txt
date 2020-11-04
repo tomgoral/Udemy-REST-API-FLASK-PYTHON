@@ -1,0 +1,55 @@
+Want to deploy to AWS?
+Hey guys!
+
+DigitalOcean is a great service for getting servers and deploying your applications. However, I know AWS is super popular as well and many of you want to deploy there.
+
+Deploying to AWS is almost identical to deploying to DigitalOcean. We don't cover it in this course, but it works almost the same way. Here's what a student had to say about deploying his app to AWS.
+
+First, he watched the videos to learn how to deploy the app to an Ubuntu 16.04 server. Then, he attempted to deploy to AWS instead of DigitalOcean:
+
+----
+
+After two rather frustrating day I got my app working. For anyone else out there who is trying to deploy on AWS, it turned out I had two issues that were relatively simple to resolve:
+
+1) I should have installed libpcre3 libpcre3-dev before I pip installed uWSGI. That's why I was getting this error in my emperor.log: "!!! no internal routing support, rebuild with pcre support !!!"
+
+If you have already installed uWSGI and are getting the same error, you need to install those dependencies and then reinstall pip. I used these commands:
+
+sudo apt-get install libpcre3 libpcre3-dev
+pip install uwsgi -I --no-cache-dir
+Otherwise, if you're reading this before following Jose's deployment instructions, just make sure you run 'sudo apt-get install libpcre3 libpcre3-dev' at some point before you pip install uWSGI.
+
+As soon as I reinstalled, uWSGI started working for me and I was getting a socket.sock file and a uWSGI error log as expected (instead of just an emperor.log)
+
+2) My second issue was more of my own making.
+
+I was running a copy of python 3.7.3 that I had downloaded to my instance and then compiled from source using 'make'. It was my first time compiling from source and I didn't really know what I was doing.
+
+It turns out that I should have had 'sqlite-devel' installed before I compiled (as explained here). My compiled version of python 3.7.3 didn't have sqlite so when uWSGI tried to run my flask app it would crash with a traceback of 'no-module-named-sqlite3'.
+
+I ended up just installing python 3.6 (this time using a package manager) and restarted my virtual environment to use that as my interpreter. After doing that, and restarting nginx and uWSGI, everything worked perfectly. My app is responding to all my API calls and saving data to my postgress db. I'm stoked.
+
+____
+
+So for anyone else out there who is looking to deploy to AWS, I would say it's not too tricky. I'm a real novice with linux and I managed to do it. Just make sure you're using an instance of Ubuntu 16.04 (as Jose uses) and be sure to install libpcre3 and libpcre3-dev early in the process.
+
+And, of course, as I mentioned in my comment above, make sure the security group for your instance allows for inbound traffic on port 80. By default, I think AWS's security groups only allow inbound traffic to port 22 (which is used for ssh).
+
+Thanks again for the terrific course, Jose. I've learned so much.
+
+----
+
+Recap
+So to recap, if you want to deploy to AWS:
+
+Make sure you use the same OS version as we do (Ubuntu 16.04).
+
+Make sure to install libpcre3 and libpcre3-dev before uwsgi.
+
+Finally, make sure all required libraries are installed if you are building Python from source.
+
+Hope this helps!
+
+Kind regards,
+
+Jose and the Teclado team.

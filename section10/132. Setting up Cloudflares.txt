@@ -1,0 +1,15 @@
+
+Cloudflare is a CDN  Content Delivery Network
+Free for low amounts of traffic
+Set up DNS setting
+
+
+CNAME:
+MX: email 
+TXT : text that is stored against our domain name
+
+Select Free Website Plan
+	
+Update the Nameservers:
+
+Cut and paste Cloudflares DNS server into Namecheap / GoDaddy
