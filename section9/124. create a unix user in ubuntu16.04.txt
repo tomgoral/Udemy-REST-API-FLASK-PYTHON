@@ -14,10 +14,10 @@ To enable logging in to the server as the newly created user, enable password lo
 vi /etc/ssh/sshd_config
 This opens another file. To disable root login with password, change the following line. Note you need to press "i" key to go to insert/edit mode before changing the contents of the file.
 
-PermitRootLogin yes
-to
-
+PermitRootLogin yes to
 PermitRootLogin no
+
+
 Scroll down to the end of the file and add the following line
 
 AllowUsers jose
